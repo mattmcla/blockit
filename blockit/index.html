@@ -2,20 +2,115 @@
     <head>
         <title>Blockit</title>
         <style>
+            body{
+                padding: 100px;
+            }
+            
             #camera {
-                -webkit-perspective: 800;
-                -webkit-perspective-origin: 50% 200px;
+                -webkit-perspective: 400px;
+                -webkit-perspective-origin: 50% 50%;
+            }
+            
+            .cube {
+                position:relative;
+                margin: 0;
+                height:100px;
+                width:100px;
+                -webkit-transition: -webkit-transform 2s linear;
+                -webkit-transform-style: perserve-3d;
+            }
+            
+            .cube .face{
+                background-color: rgba(0,0,255,.25);
+            }
+            
+            .face {
+                border: 1px black solid;
+                width:99px;
+                height: 99px;
+                position: absolute;
+            }
+            
+            .cube .one{
+                -webkit-transform: rotateX(-90deg) translateZ(50px);
+            }
+            
+            .cube .two{ 
+                
+                -webkit-transform: rotateY(180deg) translateZ(50px);
+            }
+            
+            .cube .three{
+                
+                -webkit-transform: rotateY(-90deg) translateZ(50px);
+            }
+            
+            .cube .four{
+                -webkit-transform:  translateZ(50px);
+            }
+            
+            .cube .five{
+                -webkit-transform: rotateY(90deg) translateZ(50px);
+            }
+            
+            .cube .six{
+                -webkit-transform: rotateX(90deg) translateZ(50px);
             }
         </style>
     </head>
     <body>
         <div id="camera">
-            <div id="cube-1">
-                
+            <div class="cube" id="cube-1">
+                <div class="face one"></div>
+                <div class="face two"></div>
+                <div class="face three"></div>
+                <div class="face five"></div>
+                <div class="face six"></div>
+                <div class="face four"></div>
+            </div>
+            <div class="cube" id="cube-1">
+                <div class="face one"></div>
+                <div class="face two"></div>
+                <div class="face three"></div>
+                <div class="face five"></div>
+                <div class="face six"></div>
+                <div class="face four"></div>
+            </div>
+            <div class="cube" id="cube-1">
+                <div class="face one"></div>
+                <div class="face two"></div>
+                <div class="face three"></div>
+                <div class="face five"></div>
+                <div class="face six"></div>
+                <div class="face four"></div>
             </div>
         </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>
-            
+            var xAngle = 0, yAngle = 0;
+            document.addEventListener('keydown', function(e)
+            {
+                    switch(e.keyCode)
+                    {
+    
+                            case 37: // left
+                                    yAngle -= 90;
+                                    break;
+    
+                            case 38: // up
+                                    xAngle += 90;
+                                    break;
+    
+                            case 39: // right
+                                    yAngle += 90;
+                                    break;
+    
+                            case 40: // down
+                                    xAngle -= 90;
+                                    break;
+                    };
+                $('.cube').style.webkitTransform = "rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)";
+        }, false);
         </script>
     </body>
 </html>
